@@ -1,0 +1,475 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+  <script type="text/javascript">
+    window.tailwind.config = {
+      darkMode: ['class'],
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(var(--border))',
+            input: 'hsl(var(--input))',
+            ring: 'hsl(var(--ring))',
+            background: 'hsl(var(--background))',
+            foreground: 'hsl(var(--foreground))',
+            primary: {
+              DEFAULT: 'hsl(var(--primary))',
+              foreground: 'hsl(var(--primary-foreground))'
+            },
+            secondary: {
+              DEFAULT: 'hsl(var(--secondary))',
+              foreground: 'hsl(var(--secondary-foreground))'
+            },
+            destructive: {
+              DEFAULT: 'hsl(var(--destructive))',
+              foreground: 'hsl(var(--destructive-foreground))'
+            },
+            muted: {
+              DEFAULT: 'hsl(var(--muted))',
+              foreground: 'hsl(var(--muted-foreground))'
+            },
+            accent: {
+              DEFAULT: 'hsl(var(--accent))',
+              foreground: 'hsl(var(--accent-foreground))'
+            },
+            popover: {
+              DEFAULT: 'hsl(var(--popover))',
+              foreground: 'hsl(var(--popover-foreground))'
+            },
+            card: {
+              DEFAULT: 'hsl(var(--card))',
+              foreground: 'hsl(var(--card-foreground))'
+            },
+          },
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer base {
+      :root {
+        --background: 0 0% 100%;
+        --foreground: 224 71.4% 4.1%;
+        --card: 0 0% 100%;
+        --card-foreground: 224 71.4% 4.1%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 224 71.4% 4.1%;
+        --primary: 262.1 83.3% 57.8%;
+        --primary-foreground: 210 20% 98%;
+        --secondary: 220 14.3% 95.9%;
+        --secondary-foreground: 220.9 39.3% 11%;
+        --muted: 220 14.3% 95.9%;
+        --muted-foreground: 220 8.9% 46.1%;
+        --accent: 220 14.3% 95.9%;
+        --accent-foreground: 220.9 39.3% 11%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 20% 98%;
+        --border: 220 13% 91%;
+        --input: 220 13% 91%;
+        --ring: 262.1 83.3% 57.8%;
+      }
+      .dark {
+        --background: 224 71.4% 4.1%;
+        --foreground: 210 20% 98%;
+        --card: 224 71.4% 4.1%;
+        --card-foreground: 210 20% 98%;
+        --popover: 224 71.4% 4.1%;
+        --popover-foreground: 210 20% 98%;
+        --primary: 263.4 70% 50.4%;
+        --primary-foreground: 210 20% 98%;
+        --secondary: 215 27.9% 16.9%;
+        --secondary-foreground: 210 20% 98%;
+        --muted: 215 27.9% 16.9%;
+        --muted-foreground: 217.9 10.6% 64.9%;
+        --accent: 215 27.9% 16.9%;
+        --accent-foreground: 210 20% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 20% 98%;
+        --border: 215 27.9% 16.9%;
+        --input: 215 27.9% 16.9%;
+        --ring: 263.4 70% 50.4%;
+      }
+    }
+  </style>
+
+  <style>
+    body {
+        background: url('/pics/backgourand.jpg') no-repeat center center fixed;
+        background-size: cover;
+      }
+      .hover-underline-animation {
+        display: inline-block;
+        position: relative;
+        color: #fff;
+      }
+      .hover-underline-animation:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #0165FC;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+      }
+      .hover-underline-animation:hover:after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+  </style>
+  
+</head>
+<body>
+  <div class="bg-[var(--background)] text-[var(--foreground)] min-h-screen flex flex-col items-center">
+    <nav class="w-full bg-[var(--primary)] text-[var(--primary-foreground)] p-4 flex justify-end space-x-4"> 
+        <button class="text-white bg-transparent border-2 border-pink-300 text-pink-300 p-4 rounded-lg shadow-lg cursor-pointer transform hover:bg-gradient-to-r hover:from-pink-300 hover:via-purple-300 hover:to-indigo-300 hover:text-black hover:scale-105 transition-transform duration-300" onclick="location.href='#'">Home</button>
+        <button class="text-white bg-transparent border-2 border-pink-300 text-pink-300 p-4 rounded-lg shadow-lg cursor-pointer transform hover:bg-gradient-to-r hover:from-pink-300 hover:via-purple-300 hover:to-indigo-300 hover:text-black hover:scale-105 transition-transform duration-300" onclick="scrollToSection('videos')">Videos</button>
+        <button class="text-white bg-transparent border-2 border-pink-300 text-pink-300 p-4 rounded-lg shadow-lg cursor-pointer transform hover:bg-gradient-to-r hover:from-pink-300 hover:via-purple-300 hover:to-indigo-300 hover:text-black hover:scale-105 transition-transform duration-300" onclick="scrollToSection('stories')">Stories</button>
+        <a href="aboutuspage.html">
+            <button class="text-white bg-transparent border-2 border-pink-300 text-pink-300 p-4 rounded-lg shadow-lg cursor-pointer transform hover:bg-gradient-to-r hover:from-pink-300 hover:via-purple-300 hover:to-indigo-300 hover:text-black hover:scale-105 transition-transform duration-300">
+              About Us
+            </button>
+          </a>
+          
+        
+    </nav>
+
+    <br><br><br><br><br>
+
+    <header class="text-center my-8">
+      <h1 class="text-4xl text-#FFFF00 md:text-6xl font-extrabold text-white hover-underline-animation">WELCOME TO ENGLISH LEARNING</h1>
+      <div class="mt-4 space-x-4">
+        <button class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-4 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300 ">Sign Up</button>
+        <button class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-4 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300 ">Let's Start</button>
+
+      </div>
+    </header>
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+    <section id="videos" class="w-full text-center my-8">
+      <h2 class="text-4xl py-10 md:text-3xl font-extrabold text-white">Videos for Practice</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
+        <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-4 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300">
+          <iframe width="350" height="380" src="https://www.youtube.com/embed/videoid1" title="Practice Reading 3-letter Words"></iframe>
+        </div>
+        <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-4 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300">
+          <iframe width="350" height="400" src="https://www.youtube.com/embed/videoid2" title="CVC Reading Lesson 1"></iframe>
+        </div>
+        <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300  p-4 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300">
+          <iframe width="350" height="400" src="https://www.youtube.com/embed/videoid3" title="The Smartest RickRoll"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <br><br><br><br><br><br>
+
+    <section id="stories" class="w-full text-center my-8">
+        <h2 class="text-4xl py-10 md:text-3xl font-extrabold text-white">Stories</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center">
+            <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-7 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300" onclick="openModal('story1')">
+                <p><img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXpibTFlMXF1ejRveWMxbmMyYncwdjgza3pheHkzcGR2N2t3dDh4dSZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/lZZwR5gvWDYdFcGNf7/giphy.gif" alt="Story 1 Icon" class="mx-auto w-40 h-40"></p>
+                <p class="  pt-3 text-lg font-bold text-purple-700">STORY 1</p>
+            </div>
+
+            <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-7 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300" onclick="openModal('story2')">
+                <p><img src="https://media.giphy.com/media/cncKRj0ka2MbABD5V5/giphy.gif?cid=790b7611aala8tgjpq44ga3ow6ohurebhp59lf73hirskeo9&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Story 2 Icon" class="mx-auto w-40 h-40"></p>
+                <p class="  pt-3 text-lg font-bold text-purple-700">STORY 2</p>
+            </div>
+
+            <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-7 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300" onclick="openModal('story3')">
+                <p><img src="https://media.giphy.com/media/KDlBVSWAsULMb61LuP/giphy.gif?cid=ecf05e47pkb83kkrcgwsg9dzt6qhr60tq2tujmx2bzil8u7t&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Story 3 Icon" class="mx-auto w-40 h-40"></p>
+                <p class=" pt-3 text-lg font-bold text-purple-700">STORY 3</p>
+            </div>
+
+            <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 p-7 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300" onclick="openModal('story4')">
+                <p><img src="https://media.giphy.com/media/EuI3MTQDO9vdPgFS79/giphy.gif?cid=ecf05e47z6rr8h166vhmihejyi4d11nxizlphtzrdrmk5qho&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Story 4 Icon" class="mx-auto w-40 h-40"></p>
+                <p class="  pt-3 text-lg font-bold text-purple-700">STORY 4</p>
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <br><br>
+
+    <footer class="text-white w-full bg-[var(--primary)] text-[var(--primary-foreground)] p-4 text-center mt-auto">
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="hover:underline">Privacy Policy</a>
+        <a href="#" class="hover:underline">Terms of Service</a>
+        <a href="#" class="hover:underline">Contact Us</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal HTML -->
+<div id="story1" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 hidden">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-3/4 md:w-1/2 lg:w-1/3 border-4 border-pink-500">
+        <h3 class="text-3xl font-bold mb-4 text-center text-purple-700">Story 1</h3>
+        <div class="relative">
+            <div class="slide">
+                <img src="/picstory/2.png" alt="Slide 1" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory/3.png" alt="Slide 2" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory/4.png" alt="Slide 3" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory/5.png" alt="Slide 4" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory/6.png" alt="Slide 5" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory/7.png" alt="Slide 6" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory/8.png" alt="Slide 7" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory/9.png" alt="Slide 8" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory/10.png" alt="Slide 9" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory/11.png" alt="Slide 10" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory/12.png" alt="Slide 11" class="w-full h-auto rounded-lg shadow-md">
+            </div> 
+        </div>
+        <div class="flex justify-between mt-4">
+            <button class="bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600" onclick="prevSlide('story1')">Previous</button>
+            <button class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600" onclick="nextSlide('story1')">Next</button>
+        </div>
+        <button class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 mt-4 w-full" onclick="closeModal('story1')">Close</button>
+    </div>
+</div>
+
+<div id="story2" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 hidden">
+    <div class="bg-white p-10 rounded-lg shadow-lg w-3/4 md:w-1/2 lg:w-1/3 border-4 border-teal-500">
+        <h3 class="text-3xl font-bold mb-4 text-center text-purple-700">Story 2</h3>
+        <div class="relative">
+            <div class="slide">
+                <img src="/picstory2/storypicture1/1s.png" alt="Slide 1" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/2s.png" alt="Slide 2" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/3s.png" alt="Slide 3" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/4s.png" alt="Slide 4" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/5s.png" alt="Slide 5" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/6s.png" alt="Slide 6" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/7s.png" alt="Slide 7" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/8s.png" alt="Slide 8" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/9s.png" alt="Slide 9" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/10s.png" alt="Slide 10" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/11s.png" alt="Slide 11" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/12s.png" alt="Slide 12" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/13s.png" alt="Slide 13" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory2/storypicture1/14s.png" alt="Slide 14" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+        </div>
+        <div class="flex justify-between mt-4">
+            <button class="bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600" onclick="prevSlide('story2')">Previous</button>
+            <button class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600" onclick="nextSlide('story2')">Next</button>
+        </div>
+        <button class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 mt-4 w-full" onclick="closeModal('story2')">Close</button>
+    </div>
+</div>
+
+<div id="story3" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 hidden">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-3/4 md:w-1/2 lg:w-1/3 border-4 border-orange-500">
+        <h3 class="text-3xl font-bold mb-4 text-center text-purple-700">Story 3</h3>
+        <div class="relative">
+            <div class="slide">
+                <img src="/picstory3/storypicture2/1c.png" alt="Slide 1" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/2c.png" alt="Slide 2" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/3c.png" alt="Slide 3" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/4c.png" alt="Slide 4" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/5c.png" alt="Slide 5" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/6c.png" alt="Slide 6" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/7c.png" alt="Slide 7" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/8c.png" alt="Slide 8" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/9c.png" alt="Slide 9" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/10c.png" alt="Slide 10" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/11c.png" alt="Slide 11" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/12c.png" alt="Slide 12" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/13c.png" alt="Slide 13" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/14c.png" alt="Slide 14" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/15c.png" alt="Slide 15" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/16c.png" alt="Slide 16" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/17c.png" alt="Slide 17" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/18c.png" alt="Slide 18" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/19c.png" alt="Slide 19" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory3/storypicture2/20c.png" alt="Slide 20" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+        </div>
+        <div class="flex justify-between mt-4">
+            <button class="bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600" onclick="prevSlide('story3')">Previous</button>
+            <button class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600" onclick="nextSlide('story3')">Next</button>
+        </div>
+        <button class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 mt-4 w-full" onclick="closeModal('story3')">Close</button>
+    </div>
+</div>
+
+<div id="story4" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 hidden">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-3/4 md:w-1/2 lg:w-1/3 border-4 border-pink-500">
+        <h3 class="text-3xl font-bold mb-4 text-center text-purple-700">Story 4</h3>
+        <div class="relative">
+            <div class="slide">
+                <img src="/picstory4/storypicture3/1v.png" alt="Slide 1" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory4/storypicture3/2v.png" alt="Slide 2" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory4/storypicture3/3v.png" alt="Slide 3" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory4/storypicture3/4v.png" alt="Slide 4" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory4/storypicture3/5v.png" alt="Slide 5" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory4/storypicture3/6v.png" alt="Slide 6" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory4/storypicture3/7v.png" alt="Slide 7" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory4/storypicture3/8v.png" alt="Slide 8" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory4/storypicture3/9v.png" alt="Slide 9" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory4/storypicture3/10v.png" alt="Slide 10" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+            <div class="slide hidden">
+                <img src="/picstory4/storypicture3/11v.png" alt="Slide 11" class="w-full h-auto rounded-lg shadow-md">
+            </div>
+        </div>
+        <div class="flex justify-between mt-4">
+            <button class="bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600" onclick="prevSlide('story4')">Previous</button>
+            <button class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600" onclick="nextSlide('story4')">Next</button>
+        </div>
+        <button class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 mt-4 w-full" onclick="closeModal('story4')">Close</button>
+    </div>
+</div>
+
+
+<script>
+    function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openModal(modalId) {
+        document.getElementById(modalId).classList.remove('hidden');
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+    }
+
+    function nextSlide(modalId) {
+        const modal = document.getElementById(modalId);
+        const slides = modal.querySelectorAll('.slide');
+        let currentSlide = -1;
+        slides.forEach((slide, index) => {
+            if (!slide.classList.contains('hidden')) {
+                currentSlide = index;
+            }
+        });
+        slides[currentSlide].classList.add('hidden');
+        const nextSlide = (currentSlide + 1) % slides.length;
+        slides[nextSlide].classList.remove('hidden');
+    }
+
+    function prevSlide(modalId) {
+        const modal = document.getElementById(modalId);
+        const slides = modal.querySelectorAll('.slide');
+        let currentSlide = -1;
+        slides.forEach((slide, index) => {
+            if (!slide.classList.contains('hidden')) {
+                currentSlide = index;
+            }
+        });
+        slides[currentSlide].classList.add('hidden');
+        const prevSlide = (currentSlide - 1 + slides.length) % slides.length;
+        slides[prevSlide].classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
